@@ -1,0 +1,43 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Service {
+  id           String        @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  price        Float
+  duration     Int
+  description  String
+  appointments Appointment[] @relation("ServiceAppointments")
+}
+
+model Customer {
+  id           String        @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  email        String        @unique
+  phone        String
+  notes        String?
+  appointments Appointment[] @relation("CustomerAppointments")
+}
+
+model Appointment {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  customer   Customer @relation("CustomerAppointments", fields: [customerId], references: [id])
+  customerId String   @db.ObjectId
+  service    Service  @relation("ServiceAppointments", fields: [serviceId], references: [id])
+  serviceId  String   @db.ObjectId
+  date       String
+  time       String
+  status     Status
+}
+
+enum Status {
+  scheduled
+  completed
+  cancelled
+}
