@@ -36,6 +36,18 @@ model Appointment {
   status     Status
 }
 
+model User {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  email    String   @unique
+  password String
+  role     UserRole
+}
+
+enum UserRole {
+  admin
+  user
+}
+
 enum Status {
   scheduled
   completed
