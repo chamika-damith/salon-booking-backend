@@ -12,9 +12,9 @@ const router = express.Router();
 
 // Add a new service
 router.post('/add', async (req, res) => {
-    const { id, name, price, duration, description } = req.body;
+    const { id, name, price, duration, description,image } = req.body;
 
-    const newService = new ServiceModel(id, name, price, duration, description);
+    const newService = new ServiceModel(id, name, price, duration, description,image);
 
     try {
         const service = await addService(newService);
@@ -49,9 +49,9 @@ router.delete('/delete/:id', async (req, res) => {
 
 // Update a service
 router.put('/update', async (req, res) => {
-    const { id, name, price, duration, description } = req.body;
+    const { id, name, price, duration, description ,image} = req.body;
 
-    const updatedService = new ServiceModel(id, name, price, duration, description);
+    const updatedService = new ServiceModel(id, name, price, duration, description,image);
 
     try {
         await updateService(id, updatedService);

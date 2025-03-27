@@ -19,8 +19,8 @@ const ServiceModel_1 = __importDefault(require("../models/ServiceModel"));
 const router = express_1.default.Router();
 // Add a new service
 router.post('/add', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id, name, price, duration, description } = req.body;
-    const newService = new ServiceModel_1.default(id, name, price, duration, description);
+    const { id, name, price, duration, description, image } = req.body;
+    const newService = new ServiceModel_1.default(id, name, price, duration, description, image);
     try {
         const service = yield (0, service_prisma_data_store_1.addService)(newService);
         res.status(201).json(service);
@@ -53,8 +53,8 @@ router.delete('/delete/:id', (req, res) => __awaiter(void 0, void 0, void 0, fun
 }));
 // Update a service
 router.put('/update', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id, name, price, duration, description } = req.body;
-    const updatedService = new ServiceModel_1.default(id, name, price, duration, description);
+    const { id, name, price, duration, description, image } = req.body;
+    const updatedService = new ServiceModel_1.default(id, name, price, duration, description, image);
     try {
         yield (0, service_prisma_data_store_1.updateService)(id, updatedService);
         res.status(200).json({ message: `Service ${id} updated successfully` });

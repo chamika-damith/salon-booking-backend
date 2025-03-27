@@ -26,6 +26,7 @@ function addService(s) {
                     price: s.price,
                     duration: s.duration,
                     description: s.description,
+                    image: s.image,
                 },
             });
             console.log('Service Added:', newService);
@@ -73,6 +74,7 @@ function updateService(id, s) {
                     price: s.price,
                     duration: s.duration,
                     description: s.description,
+                    image: s.image,
                 },
             });
             console.log('Service updated:', updatedService);

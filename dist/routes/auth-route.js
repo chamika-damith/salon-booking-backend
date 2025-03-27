@@ -24,7 +24,7 @@ router.post('/register', (req, res) => __awaiter(void 0, void 0, void 0, functio
         if (!email || !password) {
             res.status(400).json({ error: 'Email and password are required' });
         }
-        const newUser = yield (0, user_prisma_data_store_1.registerUser)({ email, password, role: role || 'user' });
+        const newUser = yield (0, user_prisma_data_store_1.registerUser)({ email, password, role: role || 'admin' });
         // Generate JWT token
         const token = (0, jwt_1.generateToken)({
             id: newUser.id,

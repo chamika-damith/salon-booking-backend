@@ -13,7 +13,7 @@ router.post('/register', async (req, res) => {
             res.status(400).json({ error: 'Email and password are required' });
         }
 
-        const newUser = await registerUser({ email, password, role: role || 'user' });
+        const newUser = await registerUser({ email, password, role: role || 'admin' });
 
         // Generate JWT token
         const token = generateToken({

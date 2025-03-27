@@ -14,6 +14,7 @@ model Service {
   duration     Int
   description  String
   appointments Appointment[] @relation("ServiceAppointments")
+  image        String
 }
 
 model Customer {
